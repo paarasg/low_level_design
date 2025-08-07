@@ -72,8 +72,10 @@ static void test_basic(void) {
 void test_try_reserve_tokens(void) {
     auto clock = std::make_shared<FakeClock>();
     TokenBucket T(10.0, 5.0, clock);
+
     assert(T.TryReserve(10));
     assert(!T.Allow());
+
     clock->Advance(std::chrono::seconds(1));
     assert(!T.TryReserve(10));
 

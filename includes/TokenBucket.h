@@ -24,7 +24,7 @@ public:
         return false;
     }
 
-    bool TryReserve(int tokens) {
+    bool TryReserve(int tokens) override {
         if (tokens <= 0) return false;
         std::lock_guard<std::mutex> lock(mu_);
         Refill();
